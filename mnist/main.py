@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
-from csv_manager import write_csv
+from csv_manager import write_csv 
 test_loss_list = []
 epoch_list = []
 
@@ -116,7 +116,7 @@ def main():
 
     if (args.save_model):
         torch.save(model.state_dict(),"mnist_cnn.pt")
-        #write_csv('mnist_loss', test_loss_list, epoch_list)
+        write_csv('mnist_loss', test_loss_list, epoch_list)
 
 if __name__ == '__main__':
     main()

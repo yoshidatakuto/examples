@@ -14,18 +14,13 @@ def write_csv(csvfilename, avg_loss_list, epoch_list):
 
 
 def view_loss(csvfilename):
-    print("aaaa")
     loss_list = pd.read_csv(csvfilename + '.csv').T
-    print("aa")
     # plot learning curve
     plt.figure()
     plt.plot(loss_list, 'r-', label='train_loss')
-    print("bb")
     plt.xticks(np.arange(1, 10 ,1))
     plt.legend()
-    print("cc")
     plt.xlabel('epoch')
     plt.ylabel('loss')
     plt.grid()
-    print("dd")
     plt.show()
