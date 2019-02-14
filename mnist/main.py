@@ -6,6 +6,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 from csv_manager import write_csv
+test_loss_list = []
+epoch_list = []
 
 class Net(nn.Module):
     def __init__(self):
@@ -56,7 +58,9 @@ def test(args, model, device, test_loader, epoch):
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
-    write_csv('mnist_loss', test_loss, epoch)
+
+    test_loss_list.append(test_lost)
+    epoch_list.append(epoch)
 
 def main():
     # Training settings
@@ -112,6 +116,7 @@ def main():
 
     if (args.save_model):
         torch.save(model.state_dict(),"mnist_cnn.pt")
+        write_csv('mnist_loss', test_loss_list, epoch_list)
         view_loss('mnist_loss')
 if __name__ == '__main__':
     main()
