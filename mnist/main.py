@@ -56,7 +56,7 @@ def test(args, model, device, test_loader, epoch):
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
-    write_csv('mnist_loss', loss.item(), epoch)
+    write_csv('mnist_loss', test_loss, epoch)
 
 def main():
     # Training settings
