@@ -59,7 +59,7 @@ def test(args, model, device, test_loader, epoch):
         test_loss, correct, len(test_loader.dataset),
         100. * correct / len(test_loader.dataset)))
 
-    test_loss_list.append(test_lost)
+    test_loss_list.append(test_loss)
     epoch_list.append(epoch)
 
 def main():
