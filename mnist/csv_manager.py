@@ -1,5 +1,7 @@
 import csv
 import pandas as pd
+import matplotlib as mpl
+mpl.use("TkAgg")
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -12,12 +14,18 @@ def write_csv(csvfilename, avg_loss_list, epoch_list):
 
 
 def view_loss(csvfilename):
-    loss_list = pd.read_csv(csvfilename + '.csv')
+    print("aaaa")
+    loss_list = pd.read_csv(csvfilename + '.csv').T
+    print("aa")
     # plot learning curve
     plt.figure()
     plt.plot(loss_list, 'r-', label='train_loss')
-    plt.xticks(np.arange(-1, 100 , 10))
+    print("bb")
+    plt.xticks(np.arange(1, 10 ,1))
     plt.legend()
+    print("cc")
     plt.xlabel('epoch')
     plt.ylabel('loss')
     plt.grid()
+    print("dd")
+    plt.show()
