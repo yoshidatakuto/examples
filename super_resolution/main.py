@@ -8,6 +8,9 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from model import Net
 from data import get_training_set, get_test_set
+from csv_manager import write_csv
+loss_list = []
+epoch_list = []
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch Super Res Example')
@@ -58,6 +61,8 @@ def train(epoch):
 
     print("===> Epoch {} Complete: Avg. Loss: {:.4f}".format(epoch, epoch_loss / len(training_data_loader)))
 
+    epoch_list.append(epoch)
+    loss_list.append(epoch_loss / len(training_data_loader))
 
 def test():
     avg_psnr = 0
@@ -81,3 +86,5 @@ for epoch in range(1, opt.nEpochs + 1):
     train(epoch)
     test()
     checkpoint(epoch)
+
+write_csv('loss_data', loss_list, epoch_list)
